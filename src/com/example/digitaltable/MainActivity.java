@@ -12,6 +12,7 @@ public class MainActivity extends Activity {
 
 	private Button MM;
 	private Button profile;
+	private Button chat;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,15 @@ public class MainActivity extends Activity {
 		MM.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				Intent myIntent = new Intent(MainActivity.this, Matchmaking.class);
+				MainActivity.this.startActivity(myIntent);
+			}
+		});
+		
+		chat = (Button) findViewById(R.id.chatb);
+		
+		chat.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				Intent myIntent = new Intent(MainActivity.this, ChatRoom.class);
 				MainActivity.this.startActivity(myIntent);
 			}
 		});

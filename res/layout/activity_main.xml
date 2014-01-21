@@ -58,4 +58,12 @@
         android:layout_marginLeft="26dp"
         android:text="Profile" />
 
+    <Button
+        android:id="@+id/chatb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profileb"
+        android:layout_toLeftOf="@+id/profileb"
+        android:text="chat" />
+
 </RelativeLayout>

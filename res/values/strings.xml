@@ -4,5 +4,10 @@
     <string name="app_name">Digital Table</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="empty"></string>
+	<string name="join">Join</string>
+	<string name="nickname_text">Enter a nickname</string>
+	<string name="send_message">Send</string>
+	<string name="server_prompt">Select Chat Server</string>
 
 </resources>
