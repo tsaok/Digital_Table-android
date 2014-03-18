@@ -1,5 +1,7 @@
 package com.example.digitaltable;
 
+import com.example.digitaltablesutil.PushUtil;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -16,15 +18,20 @@ public class ChatRoom extends Activity {
 	private EditText EditEnterMessage;
 	private ListView ListViewMessages;
 	private ArrayAdapter<String> messageAdapter;
+	private PushUtil push;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.chat_room);
-
+		setupPusher();
 		setupViews();
 	}
 
+	public void setupPusher() {
+		push = new PushUtil();
+	}
+	
 	public void setupViews() {
 		ListViewMessages = (ListView) findViewById(R.id.ListViewMessages);
 		EditEnterMessage = (EditText) findViewById(R.id.editTextMessage);
@@ -56,11 +63,10 @@ public class ChatRoom extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				Log.d("chickens", "1");
+				
 				sendMessage(EditEnterMessage.getText().toString());
-				Log.d("chickens", "2");
+				push.sendMessage(EditEnterMessage.getText().toString());
 				EditEnterMessage.setText("");
-				Log.d("chickens", "3");
 			}
 		});
 
