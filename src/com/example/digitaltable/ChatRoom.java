@@ -42,6 +42,7 @@ public class ChatRoom extends Activity implements PusherActivity {
 		ListViewMessages = (ListView) findViewById(R.id.ListViewMessages);
 		EditEnterMessage = (EditText) findViewById(R.id.editTextMessage);
 		ButtonSend = (Button) findViewById(R.id.Send);
+		ButtonSend.setEnabled(false);
 		messageAdapter = new ArrayAdapter<String>(this, R.layout.message_box, R.id.text_msg);
 		ListViewMessages.setAdapter(messageAdapter);
 		ListViewMessages.setTranscriptMode(TRANSCRIPT_MODE_NORMAL);
@@ -86,7 +87,7 @@ public class ChatRoom extends Activity implements PusherActivity {
 
 	@Override
 	public void onSubscriptionSucceeded(String channelName) {
-		// TODO Auto-generated method stub
+		ButtonSend.setEnabled(true);
 		
 	}
 
