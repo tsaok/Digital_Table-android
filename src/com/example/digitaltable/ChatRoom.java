@@ -12,8 +12,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-public class ChatRoom extends Activity {
+public class ChatRoom extends Activity implements PusherActivity {
 
+	private static final int TRANSCRIPT_MODE_NORMAL = 1;
 	private Button ButtonSend;
 	private EditText EditEnterMessage;
 	private ListView ListViewMessages;
@@ -29,7 +30,7 @@ public class ChatRoom extends Activity {
 	}
 
 	public void setupPusher() {
-		push = new PushUtil();
+		push = new PushUtil(this);
 		
 		// this is terrible, will get response code from subscription
 		
@@ -41,7 +42,8 @@ public class ChatRoom extends Activity {
 		ButtonSend = (Button) findViewById(R.id.Send);
 		messageAdapter = new ArrayAdapter<String>(this, R.layout.message_box, R.id.text_msg);
 		ListViewMessages.setAdapter(messageAdapter);
-
+		ListViewMessages.setTranscriptMode(TRANSCRIPT_MODE_NORMAL);
+		ListViewMessages.setStackFromBottom(false);
 //		EditEnterMessage.setOnKeyListener(new OnKeyListener() {
 //
 //			@Override
@@ -76,7 +78,27 @@ public class ChatRoom extends Activity {
 	}
 
 	public void sendMessage(String message) {
-		messageAdapter.add("me :" + message);
+		messageAdapter.add("Me: " + message);
 		messageAdapter.notifyDataSetChanged();
+	}
+
+	@Override
+	public void onSubscriptionSucceeded(String channelName) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onEvent(String channelName, String eventName, String data) {
+		if (eventName.equals("Message")) {
+			messageAdapter.add("You: " + data);
+			messageAdapter.notifyDataSetChanged();
+		}
+	}
+
+	@Override
+	public void onAuthenticationFailure(String arg0, Exception arg1) {
+		// TODO Auto-generated method stub
+		
 	}
 }

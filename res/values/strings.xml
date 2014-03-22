@@ -9,5 +9,7 @@
 	<string name="nickname_text">Enter a nickname</string>
 	<string name="send_message">Send</string>
 	<string name="server_prompt">Select Chat Server</string>
+	<color name="white">#FFFFFFFF</color>
+	<color name="light_gray">#CCCCCC</color>
 
 </resources>

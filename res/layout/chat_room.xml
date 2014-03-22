@@ -30,8 +30,8 @@
     <ListView
         android:id="@+id/ListViewMessages"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/editTextMessage"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/Send"
         android:layout_alignParentLeft="true"
         android:cacheColorHint="@android:color/secondary_text_dark" >
 

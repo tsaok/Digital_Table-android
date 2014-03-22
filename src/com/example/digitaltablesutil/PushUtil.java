@@ -1,6 +1,8 @@
 package com.example.digitaltablesutil;
+import android.app.Activity;
 import android.util.Log;
 
+import com.example.digitaltable.PusherActivity;
 import com.pusher.client.Pusher;
 import com.pusher.client.PusherOptions;
 import com.pusher.client.channel.*;
@@ -12,8 +14,11 @@ import com.pusher.client.util.HttpAuthorizer;
 public class PushUtil {
 	private Pusher pusher;
 	private PrivateChannel channel;
-
-	public PushUtil() {		
+	private PusherActivity act;
+	
+	public PushUtil(final PusherActivity act) {	
+		this.act = act;
+		Log.d("Hello", "init");
 		HttpAuthorizer authorizer = new HttpAuthorizer("http://digitaltable.parseapp.com/pusher/auth");
 		PusherOptions options = new PusherOptions().setAuthorizer(authorizer);
 		pusher = new Pusher("3c7da757d0d8da6f399e", options);
@@ -36,20 +41,23 @@ public class PushUtil {
 		    public void onSubscriptionSucceeded(String channelName) {
 		    	Log.d("Subscription", "success!");
 		    	System.out.println("Subscribed!");
+		    	act.onSubscriptionSucceeded(channelName);
 		    }
 	
 		    @Override
 		    public void onEvent(String channelName, String eventName, String data) {
 		        // Called for incoming events names "foo", "bar" or "baz"
 		    	Log.d("Hello", "asdfasdf");
+		    	act.onEvent(channelName, eventName, data);
 		    }
 
 			@Override
 			public void onAuthenticationFailure(String arg0, Exception arg1) {
 				// TODO Auto-generated method stub
 				Log.d("Hello", "Auth failed");
+				act.onAuthenticationFailure(arg0, arg1);
 			}
-		}, "foo", "bar", "baz");
+		}, "foo", "bar", "Message");
 	}
 
 	
