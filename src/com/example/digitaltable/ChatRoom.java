@@ -1,6 +1,8 @@
 package com.example.digitaltable;
 
+import com.example.digitaltablemodels.DTMessage;
 import com.example.digitaltablesutil.PushUtil;
+import com.google.gson.Gson;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -91,7 +93,10 @@ public class ChatRoom extends Activity implements PusherActivity {
 	@Override
 	public void onEvent(String channelName, String eventName, String data) {
 		if (eventName.equals("Message")) {
-			messageAdapter.add("You: " + data);
+ 	    	Gson g = new Gson();
+	    	java.lang.reflect.Type type = DTMessage.class;
+	    	DTMessage msg = g.fromJson(data, type);
+			messageAdapter.add("You: " + msg);
 			messageAdapter.notifyDataSetChanged();
 		}
 	}

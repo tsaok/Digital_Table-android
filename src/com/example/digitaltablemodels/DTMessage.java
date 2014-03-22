@@ -2,29 +2,29 @@ package com.example.digitaltablemodels;
 
 import java.util.ArrayList;
 
-public class Message {
-	private String data;
+public class DTMessage {
+	private String message;
 	private int sender;
 	private ArrayList<Integer> target;
 	private int messageId;
 	private int sent;
 	
-	public Message(String d, int s, ArrayList<Integer> target)
+	public DTMessage(String d, int s, ArrayList<Integer> target)
 	{
-		data = d;
+		message = d;
 		sender = s;
 		this.target = target;
 	}
 	
 	
-	public String getData()
+	public String getMessage()
 	{
-		return data;
+		return message;
 	}
 	
-	public void setData(String set)
+	public void setMessage(String set)
 	{
-		data = set;
+		message = set;
 	}
 	
 	public int getSender()
@@ -35,6 +35,11 @@ public class Message {
 	public void setSender(int id)
 	{
 		sender = id;
+	}
+	
+	@Override
+	public String toString() {
+		return message;
 	}
 	
 	

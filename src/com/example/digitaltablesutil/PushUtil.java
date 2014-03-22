@@ -1,8 +1,15 @@
 package com.example.digitaltablesutil;
+import java.lang.reflect.Type;
+
 import android.app.Activity;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 
 import com.example.digitaltable.PusherActivity;
+import com.example.digitaltablemodels.DTMessage;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.pusher.client.Pusher;
 import com.pusher.client.PusherOptions;
 import com.pusher.client.channel.*;
@@ -38,24 +45,47 @@ public class PushUtil {
 	
 		channel = pusher.subscribePrivate("private-my-channel", new PrivateChannelEventListener() {
 		    @Override
-		    public void onSubscriptionSucceeded(String channelName) {
+		    public void onSubscriptionSucceeded(final String channelName) {
 		    	Log.d("Subscription", "success!");
 		    	System.out.println("Subscribed!");
-		    	act.onSubscriptionSucceeded(channelName);
+		    	Handler refresh = new Handler(Looper.getMainLooper());
+		    	refresh.post(new Runnable() {
+		    	    public void run()
+		    	    {
+		    	    	act.onSubscriptionSucceeded(channelName);
+		    	    }
+		    	});
+
+		    	
 		    }
 	
 		    @Override
-		    public void onEvent(String channelName, String eventName, String data) {
+		    public void onEvent(final String channelName, final String eventName, final String data) {
 		        // Called for incoming events names "foo", "bar" or "baz"
 		    	Log.d("Hello", "asdfasdf");
-		    	act.onEvent(channelName, eventName, data);
+		    	Handler refresh = new Handler(Looper.getMainLooper());
+		    	refresh.post(new Runnable() {
+		    	    public void run()
+		    	    {
+				    	act.onEvent(channelName, eventName, data);
+		    	    }
+		    	});
+
 		    }
 
 			@Override
-			public void onAuthenticationFailure(String arg0, Exception arg1) {
+			public void onAuthenticationFailure(final String arg0, final Exception arg1) {
 				// TODO Auto-generated method stub
 				Log.d("Hello", "Auth failed");
-				act.onAuthenticationFailure(arg0, arg1);
+		    	Handler refresh = new Handler(Looper.getMainLooper());
+		    	refresh.post(new Runnable() {
+		    	    public void run()
+		    	    {
+		    			act.onAuthenticationFailure(arg0, arg1);
+		    	    }
+		    	});
+
+	
 			}
 		}, "foo", "bar", "Message");
 	}
