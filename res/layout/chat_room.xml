@@ -10,6 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/editTextMessage"
+        android:minHeight="@android:dimen/app_icon_size"
         android:text="Send" />
 
     <EditText
@@ -18,7 +20,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:ems="10" >
+        android:ems="10"
+        android:inputType="text"
+        android:minHeight="@android:dimen/app_icon_size" >
 
         <requestFocus />
     </EditText>
@@ -27,9 +31,9 @@
         android:id="@+id/ListViewMessages"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/Send"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" >
+        android:layout_above="@+id/editTextMessage"
+        android:layout_alignParentLeft="true"
+        android:cacheColorHint="@android:color/secondary_text_dark" >
 
     </ListView>
 
