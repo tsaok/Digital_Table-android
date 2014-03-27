@@ -1,5 +1,5 @@
 package com.example.digitaltablemodels;
 
-public class charSheet {
+public class CharSheet {
 
 }

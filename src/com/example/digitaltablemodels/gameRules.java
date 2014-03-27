@@ -1,5 +1,5 @@
 package com.example.digitaltablemodels;
 
-public class gameRules {
+public class GameRules {
 
 }

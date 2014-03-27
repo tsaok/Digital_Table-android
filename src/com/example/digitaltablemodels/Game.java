@@ -6,7 +6,7 @@ import java.util.Stack;
 
 public class Game {
 	private HashMap<User, ArrayList<Character>> PCs;
-	private gameRules gameRules;
+	private GameRules gameRules;
 	private Stack<DTMessage> history;
 	private ArrayList<String> tags;
 	private Lore lore;
