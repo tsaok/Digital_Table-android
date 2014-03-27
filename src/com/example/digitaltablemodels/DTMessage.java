@@ -37,6 +37,15 @@ public class DTMessage {
 		sender = id;
 	}
 	
+	public void setTarget(ArrayList<Integer> target) 
+	{
+		this.target = target;
+	}
+	
+	public ArrayList<Integer> getTarget() {
+		return target;
+	}
+	
 	@Override
 	public String toString() {
 		return message;
